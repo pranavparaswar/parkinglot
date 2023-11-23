@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ParkingLot {
+public class ParkingLot implements Observable{
 
     private final int capacity;
 
     ArrayList<Car> carlist = new ArrayList<>();;
-    private Set<ParkingLotObservable> observerList = new HashSet<ParkingLotObservable>();
+    private Set<ParkingLotObserver> observerList = new HashSet<ParkingLotObserver>();
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
@@ -27,10 +27,26 @@ public class ParkingLot {
         carlist.add(car);
 
         if (this.capacity == this.carlist.size()) {
-            for (ParkingLotObservable item: this.observerList
+            for (ParkingLotObserver item: this.observerList
             ) {
                 item.NotifyParkingFull();
             }
+        }
+    }
+
+    @Override
+    public void notfiyAllParkingFull() {
+        for (ParkingLotObserver item: this.observerList
+        ) {
+            item.NotifyParkingFull();
+        }
+    }
+
+    @Override
+    public void notifyAllParkingAvailable() {
+        for (ParkingLotObserver item: this.observerList
+        ) {
+            item.NotifyParkingAvailable();
         }
     }
 
@@ -42,10 +58,7 @@ public class ParkingLot {
         carlist.remove(car);
 
         if (this.carlist.size() +1 == this.capacity) {
-            for (ParkingLotObservable item: this.observerList
-                 ) {
-                item.NotifyParkingAvailable();
-            }
+            this.notifyAllParkingAvailable();
         }
 
 
@@ -55,7 +68,7 @@ public class ParkingLot {
         return this.carlist.contains(car);
     }
 
-    public void addObserver(ParkingLotObservable owner) {
-        observerList.add(owner);
+    public void addObserver(ParkingLotObserver observer) {
+        observerList.add(observer);
     }
 }

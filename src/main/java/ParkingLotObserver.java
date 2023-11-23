@@ -1,4 +1,4 @@
-public interface ParkingLotObservable {
+public interface ParkingLotObserver {
     boolean NotifyParkingFull();
     boolean NotifyParkingAvailable();
 

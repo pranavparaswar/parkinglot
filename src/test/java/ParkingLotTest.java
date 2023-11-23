@@ -7,7 +7,7 @@ public class ParkingLotTest {
     @Test
     public void ParkTheCar() throws Exception{
         Car car = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(1);
         lot.addObserver(owner);
 
@@ -17,7 +17,7 @@ public class ParkingLotTest {
     @Test
     public void ParkTheCarreturnsParkingFull() throws Exception{
         Car car = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(0);
         lot.addObserver(owner);
 
@@ -27,7 +27,7 @@ public class ParkingLotTest {
     @Test
         public void ParkTheSameCar() throws Exception{
         Car car = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(5);
         lot.addObserver(owner);
         lot.Park(car);
@@ -39,7 +39,7 @@ public class ParkingLotTest {
     @Test
     public void UnparktheCarthrowsErrorInvalidCar() {
         Car car = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(5);
 
         Assertions.assertThrows(InvalidCarException.class, ()->  lot.Unpark(car));
@@ -48,7 +48,7 @@ public class ParkingLotTest {
     @Test
     public void SuccesfullUnparking() throws Exception{
         Car car = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(5);
 
         lot.Park(car);
@@ -60,7 +60,7 @@ public class ParkingLotTest {
     @Test
     public void SucesfulCarIsPresentCheck() throws Exception {
         Car car = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot pLot = new ParkingLot(2);
         pLot.addObserver(owner);
 
@@ -72,7 +72,7 @@ public class ParkingLotTest {
     @Test
     public void SucesfulCarIsNotPresentCheck() throws Exception {
         Car car = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot pLot = new ParkingLot(2);
         pLot.addObserver(owner);
 
@@ -83,7 +83,7 @@ public class ParkingLotTest {
     public  void ParkOneCarUnparkanotherCar() throws Exception {
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(5);
         lot.addObserver(owner);
 
@@ -97,7 +97,7 @@ public class ParkingLotTest {
     public void ParkingFullNotification()throws Exception{
         Car car1 = new Car();
 
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
 
         ParkingLot lot = new ParkingLot(1);
         lot.addObserver(owner);
@@ -112,7 +112,7 @@ public class ParkingLotTest {
     public void ParkingFullNotificationShouldNotCalled()throws Exception{
         Car car1 = new Car();
 
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
 
         ParkingLot lot = new ParkingLot(2);
         lot.addObserver(owner);
@@ -125,7 +125,7 @@ public class ParkingLotTest {
     public void ParkingAvailableNotification()throws Exception{
         Car car1 = new Car();
 
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
 
         ParkingLot lot = new ParkingLot(1);
         lot.addObserver(owner);
@@ -139,7 +139,7 @@ public class ParkingLotTest {
     public void ShouldNotfiyParkingFullAndAvailableNotification() throws Exception {
         Car car1 = new Car();
 
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
 
         ParkingLot lot = new ParkingLot(1);
         lot.addObserver(owner);
@@ -157,7 +157,7 @@ public class ParkingLotTest {
     public void ShouldNotfiyParkingFullAndAvailableNotification1() throws Exception {
         Car car1 = new Car();
 
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
 
         ParkingLot lot = new ParkingLot(1);
         lot.addObserver(owner);
@@ -176,7 +176,7 @@ public class ParkingLotTest {
 
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(2);
         lot.addObserver(owner);
         lot.Park(car1);
@@ -191,7 +191,7 @@ public class ParkingLotTest {
     public void AddOwnerAsSubscriberForParkingLot() throws  Exception{
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(2);
         lot.addObserver(owner);
 
@@ -207,7 +207,7 @@ public class ParkingLotTest {
     public void AddCopAsSubscriberForParkingLot() throws  Exception{
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingLotObservable cop = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver cop = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(2);
         lot.addObserver(cop);
 
@@ -224,8 +224,8 @@ public class ParkingLotTest {
     public void AddingOwnerAndCopForParkingFullNotification() throws Exception {
         Car car1 = new Car();
         Car car2 = new Car();
-        ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
-        ParkingLotObservable cop = Mockito.mock(ParkingLotObservable.class);
+        ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
+        ParkingLotObserver cop = Mockito.mock(ParkingLotObserver.class);
         ParkingLot lot = new ParkingLot(2);
         lot.addObserver(owner);
         lot.addObserver(cop);
@@ -241,8 +241,8 @@ public class ParkingLotTest {
 
             Car car1 = new Car();
             Car car2 = new Car();
-            ParkingLotObservable owner = Mockito.mock(ParkingLotObservable.class);
-            ParkingLotObservable cop = Mockito.mock(ParkingLotObservable.class);
+            ParkingLotObserver owner = Mockito.mock(ParkingLotObserver.class);
+            ParkingLotObserver cop = Mockito.mock(ParkingLotObserver.class);
             ParkingLot lot = new ParkingLot(2);
             lot.addObserver(owner);
             lot.addObserver(cop);
