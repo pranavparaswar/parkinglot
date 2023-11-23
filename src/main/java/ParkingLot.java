@@ -71,4 +71,8 @@ public class ParkingLot implements Observable{
     public void addObserver(ParkingLotObserver observer) {
         observerList.add(observer);
     }
+
+    public boolean IsLotFull() {
+        return this.carlist.size() == this.capacity;
+    }
 }
