@@ -1,5 +1,6 @@
-public interface Owner {
+public interface ParkingLotObservable {
     boolean NotifyParkingFull();
     boolean NotifyParkingAvailable();
-    }
+
+}
 

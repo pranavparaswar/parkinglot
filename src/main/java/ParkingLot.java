@@ -1,15 +1,16 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ParkingLot {
 
     private final int capacity;
 
     ArrayList<Car> carlist = new ArrayList<>();;
-    private Owner owner;
+    private Set<ParkingLotObservable> observerList = new HashSet<ParkingLotObservable>();
 
-    public ParkingLot(int capacity, Owner owner) {
+    public ParkingLot(int capacity) {
         this.capacity = capacity;
-        this.owner = owner;
     }
 
 
@@ -26,7 +27,10 @@ public class ParkingLot {
         carlist.add(car);
 
         if (this.capacity == this.carlist.size()) {
-            this.owner.NotifyParkingFull();
+            for (ParkingLotObservable item: this.observerList
+            ) {
+                item.NotifyParkingFull();
+            }
         }
     }
 
@@ -38,7 +42,10 @@ public class ParkingLot {
         carlist.remove(car);
 
         if (this.carlist.size() +1 == this.capacity) {
-            owner.NotifyParkingAvailable();
+            for (ParkingLotObservable item: this.observerList
+                 ) {
+                item.NotifyParkingAvailable();
+            }
         }
 
 
@@ -46,5 +53,9 @@ public class ParkingLot {
 
     public boolean IsParked(Car car) {
         return this.carlist.contains(car);
+    }
+
+    public void addObserver(ParkingLotObservable owner) {
+        observerList.add(owner);
     }
 }
