@@ -27,10 +27,7 @@ public class ParkingLot implements Observable{
         carlist.add(car);
 
         if (this.capacity == this.carlist.size()) {
-            for (ParkingLotObserver item: this.observerList
-            ) {
-                item.NotifyParkingFull();
-            }
+           this.notifyAllParkingAvailable();
         }
     }
 
@@ -74,5 +71,13 @@ public class ParkingLot implements Observable{
 
     public boolean IsLotFull() {
         return this.carlist.size() == this.capacity;
+    }
+
+    public int getAvailableParkingCount() {
+        return this.carlist.size();
+    }
+
+    public int getCapacity() {
+        return this.capacity;
     }
 }

@@ -1,10 +1,14 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 public class Attendant {
 
-    private Set<ParkingLot> lotList = new HashSet<ParkingLot>();
+    private ParkingLotSelector parkingLotSelector;
 
+    private ArrayList<ParkingLot> lotList = new ArrayList<ParkingLot>();
+
+    public Attendant(ParkingLotSelector parkingLotSelector) {
+        this.parkingLotSelector = parkingLotSelector;
+    }
 
 
     public void assignParkingLot(ParkingLot lot) {
@@ -17,15 +21,9 @@ public class Attendant {
             throw new AlreadyParkedException();
         }
 
-        for (ParkingLot lot: lotList){
-                if(!lot.IsLotFull()){
-                    lot.Park(car);
-                    return;
-                }
-        }
+      ParkingLot parkingLot = this.parkingLotSelector.GetSuitableParkingLot(this.lotList);
 
-
-        throw new ParkingLotFullException();
+        parkingLot.Park(car);
     }
 
     public boolean isParked(Car car) {
@@ -47,4 +45,6 @@ public class Attendant {
             }
         }
     }
+
+
 }

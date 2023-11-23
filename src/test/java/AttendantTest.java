@@ -4,9 +4,11 @@ import org.mockito.Mockito;
 
 public class AttendantTest {
 
+    ParkingLotSelector parkingLotSelector = new FirstAvailableParkingLotSelectorImpl();
+
     @Test
     public void AttendentShouldBeAbleToParkInAParkingLot() {
-        Attendant attendant = new Attendant();
+        Attendant attendant = new Attendant(parkingLotSelector);
         ParkingLot lot = new ParkingLot(1);
         attendant.assignParkingLot(lot);
         Car mockCar = Mockito.mock(Car.class);
@@ -16,7 +18,7 @@ public class AttendantTest {
 
     @Test
     public void AttendentShouldNotBeAbleToParkInParkingFull() throws Exception {
-        Attendant attendant = new Attendant();
+        Attendant attendant = new Attendant(parkingLotSelector);
         ParkingLot lot = new ParkingLot(1);
         attendant.assignParkingLot(lot);
         Car mockCar = Mockito.mock(Car.class);
@@ -28,7 +30,7 @@ public class AttendantTest {
 
     @Test
     public void AttendantShouldParkOtherLotIfOneLotisFull() throws Exception {
-        Attendant attendant = new Attendant();
+        Attendant attendant = new Attendant(parkingLotSelector);
         ParkingLot lot1 = new ParkingLot(1);
         ParkingLot lot2 = new ParkingLot(1);
 
@@ -43,7 +45,7 @@ public class AttendantTest {
 
     @Test
     public void AttendantShouldThrowParkingFulIfAllLotsAreFull() throws Exception {
-        Attendant attendant = new Attendant();
+        Attendant attendant = new Attendant(parkingLotSelector);
         ParkingLot lot1 = new ParkingLot(1);
         ParkingLot lot2 = new ParkingLot(1);
 
@@ -63,7 +65,7 @@ public class AttendantTest {
     @Test
     public void AttendantShouldUnparkTheCar() throws Exception {
 
-        Attendant attendant = new Attendant();
+        Attendant attendant = new Attendant(parkingLotSelector);
         ParkingLot lot1 = new ParkingLot(1);
         ParkingLot lot2 = new ParkingLot(1);
 
@@ -79,7 +81,7 @@ public class AttendantTest {
     @Test
     public void AttendantShouldNotUnparkTheCarTwoTimes() throws Exception {
 
-        Attendant attendant = new Attendant();
+        Attendant attendant = new Attendant(parkingLotSelector);
         ParkingLot lot1 = new ParkingLot(1);
         ParkingLot lot2 = new ParkingLot(1);
 
@@ -91,6 +93,9 @@ public class AttendantTest {
         Assertions.assertThrows(InvalidCarException.class, ()-> attendant.unpark(mockCar1));
 
     }
+
+
+
 
 
 
