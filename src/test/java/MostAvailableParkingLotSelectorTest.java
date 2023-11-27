@@ -25,6 +25,8 @@ public class MostAvailableParkingLotSelectorTest {
     @Test
     void ShouldReturnTheMostAvailableCars() throws Exception {
 
+
+       //Test
         ParkingLot mockParkingLot1 = Mockito.mock(ParkingLot.class);
         ParkingLot mockParkingLot2 = Mockito.mock(ParkingLot.class);
         ArrayList<ParkingLot> parkingLotList=new ArrayList();
